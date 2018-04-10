@@ -4,4 +4,13 @@ const TODO_FILTERS = Object.freeze({
   IN_PROGRESS: 'IN_PROGRESS'
 });
 
-export {TODO_FILTERS};
+const TODO_LABELS = Object.freeze({
+  [TODO_FILTERS.ALL]: 'All',
+  [TODO_FILTERS.DONE]: 'Done',
+  [TODO_FILTERS.IN_PROGRESS]: 'In progress'
+});
+
+export {
+  TODO_FILTERS,
+  TODO_LABELS
+};

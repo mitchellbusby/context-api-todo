@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {TODO_FILTERS} from './TodoFilters';
+import {TODO_FILTERS, TODO_LABELS} from './TodoFilters';
 
 
-class TodoFilter extends Component {
+class TodoFilterPane extends Component {
   render() {
     const {currentlySelectedFilter, onChangeFilter} = this.props;
     return (
       <div>
+        <h2>Filter by</h2>
         {
           Object.keys(TODO_FILTERS).map((key, index) => {
             const value = TODO_FILTERS[key];
+
+            const label = TODO_LABELS[value];
 
             return (
               <div className={'radio'}>
@@ -20,7 +23,7 @@ class TodoFilter extends Component {
                     checked={currentlySelectedFilter===value}
                     onChange={onChangeFilter(value)}
                   />
-                    {value}
+                    {label}
                 </label>
               </div>
             )
@@ -32,9 +35,9 @@ class TodoFilter extends Component {
 }
 
 
-TodoFilter.propTypes = {
+TodoFilterPane.propTypes = {
   currentlySelectedFilter: PropTypes.string,
   onChangeFilter: PropTypes.func,
 }
 
-export {TodoFilter};
+export {TodoFilterPane};

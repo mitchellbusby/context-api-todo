@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {TodoList} from './TodoList';
-import {TodoFilter} from './TodoFilter';
+import {TodoFilterPane} from './TodoFilterPane';
 
 const TODOS = [
-  {item: 'cry', status: 'IN_PROGRESS'},
-  {item: 'sob', status: 'IN_PROGRESS'},
-  {item: 'sob again', status: 'DONE'},
+  {item: 'Eat dinner', status: 'IN_PROGRESS'},
+  {item: 'Write Javascript', status: 'IN_PROGRESS'},
+  {item: 'Go to sleep', status: 'DONE'},
 ];
 
 class App extends Component {
@@ -54,7 +54,7 @@ class App extends Component {
           currentlySelectedFilter={currentlySelectedFilter}
           onToggle={this.onToggleTodo}
         />
-        <TodoFilter
+        <TodoFilterPane
           currentlySelectedFilter={currentlySelectedFilter}
           onChangeFilter={this.onChangeFilter}
         />
