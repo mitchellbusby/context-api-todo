@@ -2,68 +2,43 @@ import React, { Component } from 'react';
 import './App.css';
 import {TodoList} from './TodoList';
 import {TodoFilterPane} from './TodoFilterPane';
+import {TodosProvider, TodosContext} from './TodosProvider';
 
-const TODOS = [
-  {item: 'Eat dinner', status: 'IN_PROGRESS'},
-  {item: 'Write Javascript', status: 'IN_PROGRESS'},
-  {item: 'Go to sleep', status: 'DONE'},
-];
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      todos: TODOS,
-      currentlySelectedFilter: 'ALL',
-    };
-  }
-  
-  onChangeFilter = newFilter => () => {
-    this.setState({
-      currentlySelectedFilter: newFilter
-    });
-  }
-  
-  onToggleTodo = (toCheck, item) => {
-    const {todos} = this.state;
-    this.setState({
-      todos: todos.map(todo => {
-        if (todo.item === item) {
-          return {
-            ...todo,
-            status: toCheck ? 'DONE' : 'IN_PROGRESS'
-          };
-        };
-        
-        return {
-          ...todo
-        };
-      })
-    });
-  } 
-  
+class App extends Component {  
   render() {
-    const {todos, currentlySelectedFilter} = this.state;
     return (
-      <div className="App">
-        <h1>Todos.app</h1>
-        <div className={'container'}>
-          <div className={'filter-pane'}>
-            <TodoFilterPane
-              currentlySelectedFilter={currentlySelectedFilter}
-              onChangeFilter={this.onChangeFilter}
-            />
-          </div>
-          <div className={'todos-pane'}>
-            <TodoList
-              todos={todos}
-              currentlySelectedFilter={currentlySelectedFilter}
-              onToggle={this.onToggleTodo}
-            />
+      <TodosProvider>
+        <div className="App">
+          <h1>Todos.app</h1>
+          <div className={'container'}>
+            <div className={'filter-pane'}>
+              <TodosContext.Consumer>
+                {
+                  ({state, actions}) => (
+                    <TodoFilterPane
+                      currentlySelectedFilter={state.currentlySelectedFilter}
+                      onChangeFilter={actions.onChangeFilter}
+                    />
+                  )
+                }
+              </TodosContext.Consumer>
+            </div>
+            <div className={'todos-pane'}>
+              <TodosContext.Consumer>
+              {
+                ({state, actions}) => (
+                  <TodoList
+                    todos={state.todos}
+                    currentlySelectedFilter={state.currentlySelectedFilter}
+                    onToggle={actions.onToggleTodo}
+                  />
+                )
+              }
+              </TodosContext.Consumer>
+            </div>
           </div>
         </div>
-      </div>
+      </TodosProvider>
     );
   }
 }
