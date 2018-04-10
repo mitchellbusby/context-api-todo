@@ -48,15 +48,21 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Todos.app</h1>
-        <TodoList
-          todos={todos}
-          currentlySelectedFilter={currentlySelectedFilter}
-          onToggle={this.onToggleTodo}
-        />
-        <TodoFilterPane
-          currentlySelectedFilter={currentlySelectedFilter}
-          onChangeFilter={this.onChangeFilter}
-        />
+        <div className={'container'}>
+          <div className={'filter-pane'}>
+            <TodoFilterPane
+              currentlySelectedFilter={currentlySelectedFilter}
+              onChangeFilter={this.onChangeFilter}
+            />
+          </div>
+          <div className={'todos-pane'}>
+            <TodoList
+              todos={todos}
+              currentlySelectedFilter={currentlySelectedFilter}
+              onToggle={this.onToggleTodo}
+            />
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,8 +1,37 @@
 .App {
-  padding-left: 2em;
+  margin-left: 2em;
 }
 
 
 li {
   margin: 20px 5px;
+}
+
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.container {
+  display: grid;
+}
+
+.filter-pane {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  height: 100vh;
+  background: #f7f7f7;
+  padding: 10px;
+}
+
+.todos-pane {
+  grid-column-start: 3;
+  grid-column-end: 12;
+  height: 100vh;
+  padding: 10px;
+}
+
+.radio {
+  padding: 10px 0;
 }

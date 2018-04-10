@@ -23,7 +23,7 @@ class TodoList extends Component {
     const {todos, currentlySelectedFilter} = this.props;
     return (
       <div>
-        <h2>Items</h2>
+        <h2>To do</h2>
         <ul>
           {
             todos.filter(showTodo(currentlySelectedFilter))
