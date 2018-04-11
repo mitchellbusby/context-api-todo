@@ -1,18 +1,16 @@
 import React, {Component} from 'react';
 
-const TodosContext = React.createContext(null);
-
-const TODOS = [
-  {item: 'Eat dinner', status: 'IN_PROGRESS'},
-  {item: 'Write Javascript', status: 'IN_PROGRESS'},
-  {item: 'Go to sleep', status: 'DONE'},
-];
+const TodosContext = React.createContext();
 
 class TodosProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: TODOS,
+      todos: [
+        {item: 'Eat dinner', status: 'IN_PROGRESS'},
+        {item: 'Write Javascript', status: 'IN_PROGRESS'},
+        {item: 'Go to sleep', status: 'DONE'},
+      ],
       currentlySelectedFilter: 'ALL',
     }
   }

@@ -4,43 +4,41 @@ import {TodoList} from './TodoList';
 import {TodoFilterPane} from './TodoFilterPane';
 import {TodosProvider, TodosContext} from './TodosProvider';
 
-class App extends Component {  
-  render() {
-    return (
-      <TodosProvider>
-        <div className="App">
-          <h1>Todos.app</h1>
-          <div className={'container'}>
-            <div className={'filter-pane'}>
-              <TodosContext.Consumer>
-                {
-                  ({state, actions}) => (
-                    <TodoFilterPane
-                      currentlySelectedFilter={state.currentlySelectedFilter}
-                      onChangeFilter={actions.onChangeFilter}
-                    />
-                  )
-                }
-              </TodosContext.Consumer>
-            </div>
-            <div className={'todos-pane'}>
-              <TodosContext.Consumer>
+const App = () => {
+  return (
+    <TodosProvider>
+      <div className="App">
+        <h1>Todos.app</h1>
+        <div className={'container'}>
+          <div className={'filter-pane'}>
+            <TodosContext.Consumer>
               {
                 ({state, actions}) => (
-                  <TodoList
-                    todos={state.todos}
+                  <TodoFilterPane
                     currentlySelectedFilter={state.currentlySelectedFilter}
-                    onToggle={actions.onToggleTodo}
+                    onChangeFilter={actions.onChangeFilter}
                   />
                 )
               }
-              </TodosContext.Consumer>
-            </div>
+            </TodosContext.Consumer>
+          </div>
+          <div className={'todos-pane'}>
+            <TodosContext.Consumer>
+            {
+              ({state, actions}) => (
+                <TodoList
+                  todos={state.todos}
+                  currentlySelectedFilter={state.currentlySelectedFilter}
+                  onToggle={actions.onToggleTodo}
+                />
+              )
+            }
+            </TodosContext.Consumer>
           </div>
         </div>
-      </TodosProvider>
-    );
-  }
+      </div>
+    </TodosProvider>
+  );
 }
 
 export default App;
