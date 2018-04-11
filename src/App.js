@@ -3,18 +3,16 @@ import './App.css';
 import {TodoList} from './TodoList';
 import {TodoFilterPane} from './TodoFilterPane';
 
-const TODOS = [
-  {item: 'Eat dinner', status: 'IN_PROGRESS'},
-  {item: 'Write Javascript', status: 'IN_PROGRESS'},
-  {item: 'Go to sleep', status: 'DONE'},
-];
-
 class App extends Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      todos: TODOS,
+      todos: [
+        {item: 'Eat dinner', status: 'IN_PROGRESS'},
+        {item: 'Write Javascript', status: 'IN_PROGRESS'},
+        {item: 'Go to sleep', status: 'DONE'},
+      ],
       currentlySelectedFilter: 'ALL',
     };
   }
